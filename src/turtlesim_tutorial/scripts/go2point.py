@@ -59,7 +59,6 @@ class TurtleBot:
 
         # Please, insert a number slightly greater than 0 (e.g. 0.01).
         distance_tolerance = float(input("Set your tolerance: "))
-        orientation = float(input("Set your orientation: "))
 
         vel_msg = Twist()
 
@@ -83,20 +82,11 @@ class TurtleBot:
 
             # Publish at the desired rate.
             self.rate.sleep()
-
-        #while self.pose.theta != orientation:
-
-            #print("here")
-            #vel_msg.angular.x = 0
-            #vel_msg.angular.y = 0
-            #vel_msg.angular.z = self.angular_vel(goal_pose)
-            
-            
+                      
         # Stopping our robot after the movement is over.
         vel_msg.linear.x = 0
         vel_msg.angular.z = 0
         self.velocity_publisher.publish(vel_msg)
-        print("this is the orientation",self.pose.theta)
         # If we press control + C, the node will stop.
         rospy.spin()
 
